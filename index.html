@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Division Calculator</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        background: #f2f4f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        transition: 0.3s;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 32px;
+        background: linear-gradient(90deg, #4f7cff, #9b59ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        background: #ffffff;
+        padding: 30px;
+        width: 340px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .input-group label {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        outline: none;
+    }
+
+    .input-group input:focus {
+        border-color: #7b61ff;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #4f7cff, #9b59ff);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    /* Dark Mode */
+    .dark {
+        background: #1e1f26;
+    }
+
+    .dark .card {
+        background: #2b2d36;
+        color: white;
+    }
+
+    .dark .input-group input {
+        background: #3a3d4a;
+        border: 1px solid #555;
+        color: white;
+    }
+
+    .dark .result {
+        color: #ddd;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="toggle" onclick="toggleMode()">🌙</div>
+
+<div class="container">
+    <h1>Division Rule</h1>
+
+    <div class="card">
+        <div class="input-group">
+            <label>Enter Value</label>
+            <input type="number" id="numberInput" placeholder="Enter any number">
+        </div>
+
+        <div class="input-group">
+            <label>Divide By (Default 2.6)</label>
+            <input type="number" id="divideInput" value="2.6" step="0.1">
+        </div>
+
+        <button onclick="calculate()">Calculate Result</button>
+
+        <div class="result" id="result"></div>
+    </div>
+</div>
+
+<script>
+function calculate() {
+    let number = parseFloat(document.getElementById("numberInput").value);
+    let divisor = parseFloat(document.getElementById("divideInput").value) || 2.6;
+
+    if (isNaN(number)) {
+        document.getElementById("result").innerHTML = "Please enter a valid number.";
+        return;
+    }
+
+    let answer = number / divisor;
+
+    document.getElementById("result").innerHTML = 
+        "Result: " + answer.toFixed(4);
+}
+
+function toggleMode() {
+    document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
